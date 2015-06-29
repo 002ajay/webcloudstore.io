@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-      <%@ page import="java.sql.*" %>
-     
-     <%@ page import= "java.io.*" %>
-<%@ page import="javax.servlet.RequestDispatcher" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -86,16 +81,7 @@
   </head>
   <body>
 				
-	<%
-  		String user=(String) session.getAttribute("xmail");
-  		String user1=(String) session.getAttribute("xuser");
-  		String user2=(String) session.getAttribute("xguest");
-  	  		if((user==null)&&(user1==null) && (user2==null)){
-  			request.setAttribute("Error","You Must Login First...");
-  			RequestDispatcher rd=request.getRequestDispatcher("Login1.jsp");
-  			rd.forward(request, response);	
-  		}
-  		%>
+	
                   	<div class="navbar navbar-inverse navbar-fixed-top pulse animated">
 					<div class="container">
 						<a class="navbar-brand XX" href="Data1.jsp">
@@ -110,17 +96,10 @@
 					<ul class="nav navbar-nav pull-right">
 					
 					
-						 <%
-						 session=request.getSession();
-                   		String ssx1=(String) session.getAttribute("xuser1");
-                   		String ssx2=(String) session.getAttribute("xuser2");
-                   		String ssx3=(String) session.getAttribute("xadmin");
-						if(ssx1==null && ssx2==null&& ssx3==null){
-                     %>
+			
                      <li> <a href="Owner1.jsp">Owner</a></li>
 					<li> <a href="Login1.jsp">Login</a></li>
-					<%}
-						 if(ssx1==null && ssx3==null){%>
+					
 						
 						<li> <a href="Home2.jsp">Home</a></li>
 					<li > <a href="Course.jsp">Course</a></li>
@@ -133,11 +112,6 @@
 						<li class="divider"></li>
 						<li> <a href="Lout.jsp">Logout</a> </li>
 						
-						<%} %>
-						
-						
-						<%
-						 if(ssx2==null && ssx3==null){%>
 						
 						<li> <a href="Home2.jsp">Home</a></li>
 					<li > <a href="Course.jsp">Course</a></li>
@@ -150,127 +124,21 @@
 						<li class="divider"></li>
 						<li> <a href="Logout2.jsp">Logout</a> </li>
 						
-						<%} %>
-						<%
-						 session=request.getSession();
-                   		String ss1=(String) session.getAttribute("xadmin");
-                   		String ss3=(String) session.getAttribute("xuser1");
-                   		String ss2=(String) session.getAttribute("xuser2");
-						if(ss1==null && ss2==null && ss3==null){
-                     %>
+				
                      <li class="active"> <a href="Owner1.jsp">Owner</a></li>
 					<li> <a href="Login1.jsp">Login</a></li>
-					<%}%>
 					
 					
-					<%if(ss2==null && ss3==null) { %>
-					<%
-				Connection conn9x=null;
-				PreparedStatement ps9x=null;
-				ResultSet rs9x=null;
-				OutputStream oImagex;
-				
-	try
-	{
-		Class.forName("com.mysql.jdbc.Driver");
-		conn9x=DriverManager.getConnection("jdbc:mysql://localhost:3306/mystore","root","root");
-		String query9x="Select * From admin1";
-		ps9x=conn9x.prepareStatement(query9x);
-		rs9x=ps9x.executeQuery();
-		String sss=null;
-		String sss1=null;
-		String sss2=null;
-		%>
-	
-		<% if(rs9x.next())
-		{%>
-		
-		<tr style="border-bottom-style:solid;">
-		<td>
-		<input type="image" src="imageDisplayx.jsp?imgid=<%=rs9x.getInt(1)%>" class="fadeInDown animated img-circle" width="45" height="45">
-		<li class="NM"><a href="Owner1.jsp"></a></li></td>
-		</tr>
-		<li > <a href="Home2.jsp">Home</a></li>
-					<li > <a href="Course.jsp">Course</a></li>
- 			
-		<%conn9x.close();%>
-		
-
-		<%}%>
+					
 </table>
-	<% }catch(Exception e)
-	{
-		out.println(e);
-		
-	}%>
-					<li class="dropdown">
+				<li class="dropdown">
 					<a href="#" data-toggle="dropdown" class="dropdown-toggle">More <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-					<%
-
-	Connection conn9=null;
-	PreparedStatement ps9=null;
-	ResultSet rs9=null;
-	OutputStream oImage;
-	String query9="Select * From admin1";
-	
-	try
-	{
-		Class.forName("com.mysql.jdbc.Driver");
-		conn9=DriverManager.getConnection("jdbc:mysql://localhost:3306/mystore","root","root");
-		ps9=conn9.prepareStatement(query9);
-		rs9=ps9.executeQuery();
-		%>
-	
-		<% if(rs9.next())
-		{%>
-		<tr style="border-bottom-style:solid;">
-		<td><input type="image" src="imageDisplayx.jsp?imgid=<%=rs9.getInt(1)%>" class="fadeInDown animated img-circle" width="55" height="55"><li class="NM"><a href="Owner1.jsp"><%=rs9.getString(2)%></a></li></td>
-		</tr>
-	
-		<%}%>
+				
 </table>
-	<% }catch(Exception e)
-	{
-		out.println(e);
-		
-	}%>
+	
 </td>
-</tr><%
-						int count=0;
-						try{
-						Class.forName("com.mysql.jdbc.Driver");
-						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mystore","root","root");
-						String str="select * from msg";
-						PreparedStatement ps=con.prepareStatement(str);
-						ResultSet rs=ps.executeQuery();
-						while(rs.next()) {
-						count++;
-						}
-						con.close();
-						}catch(Exception e) {
-							out.println(e);
-						}
-						
-						%>
-						
-						<%
-						int countx=0;
-						try{
-						Class.forName("com.mysql.jdbc.Driver");
-						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mystore","root","root");
-						String str="select * from sub";
-						PreparedStatement ps=con.prepareStatement(str);
-						ResultSet rs=ps.executeQuery();
-						while(rs.next()) {
-						countx++;
-						}
-						con.close();
-						}catch(Exception e) {
-							out.println(e);
-						}
-						
-						%>
+</tr>
 						
 						<li class="divider"></li>
 						<li><a href="Forgot1.jsp">Setting</a></li>
@@ -299,29 +167,19 @@
 </div>
   <li role="presentation" class="active fadeInDown animated"><a href="News.jsp">News-Events</a></li>
   <li role="presentation" class="fadeInDown animated"><a href="Data1.jsp">DashBoard</a></li>
-   						<%
-   						session=request.getSession();
-                   		String sxs1=(String) session.getAttribute("xadmin");
-						if(sxs1!=null){
-                     	%>
+   						
   <li role="presentation" class="active fadeInDown animated"><a href="UserManage.jsp">User Registration</a></li>
   <li role="presentation" class="active fadeInDown animated"><a href="Manage.jsp">User Management</a></li>
   <li role="presentation" class="active fadeInDown animated"><a href="Department.jsp">Department</a></li>
   <li role="presentation" class="active fadeInDown animated"><a href="FeedDel.jsp">Manage Feedback</a></li>
   <li role="presentation" class="active fadeInDown animated"><a href="Msg2.jsp">Manage Messages</a></li>
-  <%} %>
+
  <li role="presentation" class="active fadeInDown animated"><a href="Sview.jsp">Syllabus</a></li>
  <li role="presentation" class="active fadeInDown animated"><a href="home.jsp">Quiz</a></li>
   <li role="presentation" class="active fadeInDown animated"><a href="About.jsp">About Us</a><hr></li>
 </ul>
 </div>	
-<div class=" ZX">			
-
-
-						<%
-   						
-						if(sxs1!=null){
-                     	%>
+<div class=" ZX">	
 
 	<div class="col-lg-2">
 	
@@ -352,7 +210,7 @@
 	<h3 class="lead flash animated"">SETTINGS</h3><hr></a>
 	
 	</div>
-	<%} %>
+
 	
 	
 	<br/><br/><br/><br/>
